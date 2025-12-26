@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Stars } from '@react-three/drei';
 import { ParticleField } from './ParticleField';
@@ -8,10 +8,9 @@ import { SkillConstellation } from './SkillConstellation';
 interface Scene3DProps {
   currentSection: number;
   mousePosition: { x: number; y: number };
-  scrollProgress?: number;
 }
 
-export const Scene3D = ({ currentSection, mousePosition, scrollProgress = 0 }: Scene3DProps) => {
+export const Scene3D = ({ currentSection, mousePosition }: Scene3DProps) => {
   return (
     <div className="fixed inset-0 z-0">
       <Canvas
@@ -40,18 +39,13 @@ export const Scene3D = ({ currentSection, mousePosition, scrollProgress = 0 }: S
           
           <ParticleField count={1500} spread={25} size={0.015} />
           
-          {/* Show laptop on hero section with parallax */}
-          {currentSection <= 1 && (
-            <group 
-              position={[2, -scrollProgress * 3, 0]}
-              scale={1 - scrollProgress * 0.3}
-            >
+          {currentSection === 0 && (
+            <group position={[2, 0, 0]}>
               <FloatingLaptop mousePosition={mousePosition} />
             </group>
           )}
           
-          {/* Skill constellation with smooth transition */}
-          <SkillConstellation visible={currentSection >= 1 && currentSection <= 2} />
+          <SkillConstellation visible={currentSection === 1} />
           
           <Environment preset="night" />
         </Suspense>
