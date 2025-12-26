@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Award, ExternalLink } from 'lucide-react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Award } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const certificates = [
   {
@@ -48,75 +51,91 @@ const certificates = [
 ];
 
 interface CertificatesSectionProps {
-  visible: boolean;
+  scrollProgress: number;
 }
 
-export const CertificatesSection = ({ visible }: CertificatesSectionProps) => {
+export const CertificatesSection = ({ scrollProgress }: CertificatesSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    if (visible) {
+    if (!sectionRef.current) return;
+
+    cardsRef.current.forEach((card, index) => {
+      if (!card) return;
+      
       gsap.fromTo(
-        cardsRef.current,
-        { opacity: 0, y: 50, rotateX: -15 },
+        card,
+        { opacity: 0, y: 60, rotateX: -20, scale: 0.9 },
         {
           opacity: 1,
           y: 0,
           rotateX: 0,
+          scale: 1,
           duration: 0.6,
-          stagger: 0.1,
           ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            end: 'top 60%',
+            toggleActions: 'play none none reverse',
+          },
         }
       );
-    }
-  }, [visible]);
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   return (
     <section 
       ref={sectionRef}
       className="min-h-screen flex flex-col items-center justify-center px-8 py-20 relative z-10"
     >
-      <div className="text-center mb-16">
-        <h2 className="font-display text-4xl md:text-6xl font-bold mb-4">
-          <span className="text-gradient">Certifications</span>
-        </h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Continuous learning is my superpower
-        </p>
-      </div>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full">
-        {certificates.map((cert, index) => (
-          <div
-            key={cert.id}
-            ref={el => { if (el) cardsRef.current[index] = el; }}
-            className="glass rounded-2xl p-6 hover:glow-box transition-all duration-500 group cursor-pointer opacity-0 hover:scale-105"
-          >
-            {/* Badge */}
-            <div className="text-4xl mb-4 animate-float" style={{ animationDelay: `${index * 0.2}s` }}>
-              {cert.badge}
+      <div className="section-content w-full max-w-5xl">
+        <div className="text-center mb-16">
+          <h2 className="font-display text-4xl md:text-6xl font-bold mb-4">
+            <span className="text-gradient">Certifications</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Continuous learning is my superpower
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {certificates.map((cert, index) => (
+            <div
+              key={cert.id}
+              ref={el => { if (el) cardsRef.current[index] = el; }}
+              className="glass rounded-2xl p-6 hover:glow-box transition-all duration-500 group cursor-pointer hover:scale-105 relative"
+            >
+              {/* Badge */}
+              <div className="text-4xl mb-4 animate-float" style={{ animationDelay: `${index * 0.2}s` }}>
+                {cert.badge}
+              </div>
+              
+              <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-gradient transition-all">
+                {cert.title}
+              </h3>
+              
+              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
+                <Award className="w-4 h-4 text-neon-cyan" />
+                {cert.issuer}
+              </div>
+              
+              <p className="text-xs text-muted-foreground/60">
+                {cert.date}
+              </p>
+              
+              {/* Hover effect */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/5 via-transparent to-neon-pink/5" />
+              </div>
             </div>
-            
-            <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-gradient transition-all">
-              {cert.title}
-            </h3>
-            
-            <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
-              <Award className="w-4 h-4 text-neon-cyan" />
-              {cert.issuer}
-            </div>
-            
-            <p className="text-xs text-muted-foreground/60">
-              {cert.date}
-            </p>
-            
-            {/* Hover effect */}
-            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/5 via-transparent to-neon-pink/5" />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
