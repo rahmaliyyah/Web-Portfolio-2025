@@ -225,16 +225,7 @@ export const ContactSection = ({ visible }: ContactSectionProps) => {
           ))}
         </div>
         
-        {/* Bottom CTA */}
-        <div className="text-center pt-8">
-          <p className="text-muted-foreground text-lg mb-4">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-          </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span>Available for freelance work</span>
-          </div>
-        </div>
+      
       </div>
     </section>
   );

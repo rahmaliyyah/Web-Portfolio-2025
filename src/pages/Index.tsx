@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Lenis from '@studio-freight/lenis';
 import { Scene3D } from '@/components/three/Scene3D';
 import { Navigation } from '@/components/Navigation';
+import { IntroAnimation } from '@/components/IntroAnimation';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
@@ -10,6 +11,7 @@ import { CertificatesSection } from '@/components/sections/CertificatesSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 
 const Index = () => {
+  const [showIntro, setShowIntro] = useState(true);
   const [currentSection, setCurrentSection] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -89,10 +91,18 @@ const Index = () => {
   }, [handleNavigate]);
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative min-h-screen bg-background"
-    >
+    <>
+      {/* Intro Animation */}
+      {showIntro && (
+        <IntroAnimation onComplete={() => setShowIntro(false)} />
+      )}
+
+      {/* Main Content */}
+      <div 
+        ref={containerRef}
+        className="relative min-h-screen bg-background transition-opacity duration-1000 ease-in-out"
+        style={{ opacity: showIntro ? 0 : 1 }}
+      >
       {/* Cursor glow effect */}
       <div 
         className="cursor-glow hidden md:block"
@@ -143,6 +153,7 @@ const Index = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-pink/5 rounded-full blur-[200px]" />
       </div>
     </div>
+    </>
   );
 };
 

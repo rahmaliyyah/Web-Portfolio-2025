@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Code2, Palette, Database, Wrench, Sparkles } from 'lucide-react';
+import { Code2, Palette, Database, Wrench } from 'lucide-react';
 
 const skillCategories = [
   {
@@ -9,47 +9,50 @@ const skillCategories = [
     color: 'from-blue-500 to-cyan-500',
     skills: [
       { name: 'JavaScript', logo: 'https://cdn.simpleicons.org/javascript/F7DF1E', color: '#F7DF1E' },
-      { name: 'TypeScript', logo: 'https://cdn.simpleicons.org/typescript/3178C6', color: '#3178C6' },
+      { name: 'TypeScript', logo: 'logos/typescript.png', color: '#F7DF1E' },
+      { name: 'PHP', logo: 'https://cdn.simpleicons.org/php/777BB4', color: '#777BB4' },
       { name: 'Python', logo: 'https://cdn.simpleicons.org/python/3776AB', color: '#3776AB' },
+      { name: 'Java', logo: 'logos/java.png', color: '#F80000' },
       { name: 'HTML5', logo: 'https://cdn.simpleicons.org/html5/E34F26', color: '#E34F26' },
-      { name: 'CSS3', logo: 'https://cdn.simpleicons.org/css3/1572B6', color: '#1572B6' },
-      { name: 'SQL', logo: 'https://cdn.simpleicons.org/mysql/4479A1', color: '#4479A1' },
+      { name: 'CSS3', logo: 'logos/css.png', color: '#1572B6' },
     ],
   },
   {
-    title: 'Frontend',
+    title: 'Frameworks & Libraries',
     icon: Palette,
     color: 'from-purple-500 to-pink-500',
     skills: [
+      { name: 'Laravel', logo: 'https://cdn.simpleicons.org/laravel/FF2D20', color: '#FF2D20' },
       { name: 'React', logo: 'https://cdn.simpleicons.org/react/61DAFB', color: '#61DAFB' },
-      { name: 'Next.js', logo: 'https://cdn.simpleicons.org/nextdotjs/000000', color: '#000000' },
-      { name: 'Three.js', logo: 'https://cdn.simpleicons.org/threedotjs/000000', color: '#000000' },
+      { name: 'Next.js', logo: 'logos/nextjs.png', color: '#000000' },
       { name: 'Tailwind', logo: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', color: '#06B6D4' },
-      { name: 'Framer', logo: 'https://cdn.simpleicons.org/framer/0055FF', color: '#0055FF' },
     ],
   },
   {
-    title: 'Backend',
+    title: 'Databases',
     icon: Database,
     color: 'from-green-500 to-emerald-500',
     skills: [
-      { name: 'Node.js', logo: 'https://cdn.simpleicons.org/nodedotjs/339933', color: '#339933' },
-      { name: 'Express', logo: 'https://cdn.simpleicons.org/express/000000', color: '#000000' },
+      { name: 'MySQL', logo: 'https://cdn.simpleicons.org/mysql/4479A1', color: '#4479A1' },
       { name: 'MongoDB', logo: 'https://cdn.simpleicons.org/mongodb/47A248', color: '#47A248' },
-      { name: 'PostgreSQL', logo: 'https://cdn.simpleicons.org/postgresql/4169E1', color: '#4169E1' },
-      { name: 'REST API', logo: 'https://cdn.simpleicons.org/fastapi/009688', color: '#009688' },
+      { name: 'Redis', logo: 'https://cdn.simpleicons.org/redis/DC382D', color: '#DC382D' },
+      { name: 'Firebase', logo: 'logos/Firebase.png', color: '#FFCA28' },
     ],
   },
   {
-    title: 'Tools',
+    title: 'Tools & Platforms',
     icon: Wrench,
     color: 'from-orange-500 to-red-500',
     skills: [
       { name: 'Git', logo: 'https://cdn.simpleicons.org/git/F05032', color: '#F05032' },
+      { name: 'GitHub', logo: 'https://cdn.simpleicons.org/github/181717', color: '#181717' },
       { name: 'Docker', logo: 'https://cdn.simpleicons.org/docker/2496ED', color: '#2496ED' },
-      { name: 'Figma', logo: 'https://cdn.simpleicons.org/figma/F24E1E', color: '#F24E1E' },
+      { name: 'Postman', logo: 'https://cdn.simpleicons.org/postman/FF6C37', color: '#FF6C37' },
+      { name: 'Android Studio', logo: 'https://cdn.simpleicons.org/androidstudio/3DDC84', color: '#3DDC84' },
       { name: 'VS Code', logo: 'https://cdn.simpleicons.org/visualstudiocode/007ACC', color: '#007ACC' },
-      { name: 'Linux', logo: 'https://cdn.simpleicons.org/linux/FCC624', color: '#FCC624' },
+      { name: 'Figma', logo: 'logos/figma.png', color: '#F24E1E' },
+      { name: 'Canva', logo: 'logos/canva.png', color: '#00C4CC' },
+      { name: 'ThingsBoard', logo: 'https://cdn.simpleicons.org/thingsboard/0056A6', color: '#0056A6' },
     ],
   },
 ];
@@ -67,7 +70,6 @@ export const SkillsSection = ({ visible }: SkillsSectionProps) => {
     if (visible && sectionRef.current) {
       const tl = gsap.timeline();
       
-      // Animate all cards together (no stagger)
       tl.fromTo(
         cardsRef.current,
         { 
@@ -82,12 +84,11 @@ export const SkillsSection = ({ visible }: SkillsSectionProps) => {
           rotateX: 0,
           scale: 1,
           duration: 1,
-          stagger: 0, // Changed from 0.2 to 0 - semua muncul bersamaan
+          stagger: 0.2,
           ease: 'power3.out',
         }
       );
 
-      // Animate skill logos - also synchronized
       cardsRef.current.forEach((card) => {
         const skillLogos = card?.querySelectorAll('.skill-logo');
         gsap.fromTo(
@@ -100,7 +101,7 @@ export const SkillsSection = ({ visible }: SkillsSectionProps) => {
             duration: 0.6,
             delay: 0.5,
             ease: 'back.out(1.7)',
-            stagger: 0 // Changed from 0.08 to 0 - logo juga muncul bersamaan
+            stagger: 0.08
           }
         );
       });
@@ -172,7 +173,7 @@ export const SkillsSection = ({ visible }: SkillsSectionProps) => {
               </div>
 
               {/* Logo Grid */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="flex flex-wrap gap-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div 
                     key={skill.name}
@@ -180,10 +181,10 @@ export const SkillsSection = ({ visible }: SkillsSectionProps) => {
                     onMouseEnter={() => setHoveredSkill(`${categoryIndex}-${skillIndex}`)}
                     onMouseLeave={() => setHoveredSkill(null)}
                   >
-                    <div className="glass rounded-xl p-4 hover:scale-110 transition-all duration-300 cursor-pointer border border-border/50 hover:border-neon-purple/50 flex flex-col items-center justify-center aspect-square relative overflow-hidden">
+                    <div className="flex flex-col items-center gap-2 cursor-pointer">
                       {/* Glow effect on hover */}
                       <div 
-                        className="absolute inset-0 opacity-0 group-hover/skill:opacity-20 blur-xl transition-opacity duration-300 rounded-xl"
+                        className="absolute inset-0 opacity-0 group-hover/skill:opacity-30 blur-xl transition-opacity duration-300 rounded-full"
                         style={{ backgroundColor: skill.color }}
                       />
                       
@@ -191,7 +192,7 @@ export const SkillsSection = ({ visible }: SkillsSectionProps) => {
                       <img 
                         src={skill.logo}
                         alt={skill.name}
-                        className="w-10 h-10 object-contain relative z-10 transition-all duration-300 group-hover/skill:scale-110 group-hover/skill:drop-shadow-lg"
+                        className="w-12 h-12 object-contain relative z-10 transition-all duration-300 group-hover/skill:scale-125 group-hover/skill:drop-shadow-lg"
                         style={{
                           filter: hoveredSkill === `${categoryIndex}-${skillIndex}` 
                             ? `drop-shadow(0 0 8px ${skill.color})` 
@@ -199,12 +200,10 @@ export const SkillsSection = ({ visible }: SkillsSectionProps) => {
                         }}
                       />
                       
-                      {/* Name on hover */}
-                      <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover/skill:translate-y-0 transition-transform duration-300 bg-gradient-to-t from-background/90 to-transparent p-2 rounded-b-xl">
-                        <p className="text-xs font-medium text-center text-foreground">
-                          {skill.name}
-                        </p>
-                      </div>
+                      {/* Name */}
+                      <p className="text-xs font-medium text-center text-muted-foreground group-hover/skill:text-foreground transition-colors duration-300">
+                        {skill.name}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -222,17 +221,17 @@ export const SkillsSection = ({ visible }: SkillsSectionProps) => {
       {/* Stats summary */}
       <div className="mt-16 flex flex-wrap items-center justify-center gap-8">
         <div className="text-center">
-          <div className="text-4xl font-bold text-gradient mb-1">20+</div>
+          <div className="text-4xl font-bold text-gradient mb-1">23+</div>
           <div className="text-sm text-muted-foreground">Technologies</div>
         </div>
         <div className="w-px h-12 bg-border" />
         <div className="text-center">
-          <div className="text-4xl font-bold text-gradient mb-1">5+</div>
+          <div className="text-4xl font-bold text-gradient mb-1">2+</div>
           <div className="text-sm text-muted-foreground">Years Experience</div>
         </div>
         <div className="w-px h-12 bg-border" />
         <div className="text-center">
-          <div className="text-4xl font-bold text-gradient mb-1">100+</div>
+          <div className="text-4xl font-bold text-gradient mb-1">10+</div>
           <div className="text-sm text-muted-foreground">Projects Built</div>
         </div>
       </div>
