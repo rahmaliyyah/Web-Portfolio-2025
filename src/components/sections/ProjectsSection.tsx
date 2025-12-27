@@ -9,8 +9,8 @@ const projects = [
     description: 'A web-based career information system for Universitas Brawijaya alumni with integrated authentication, job search, applications, and admin management.',
     role: 'PM x Fullstack Programmer',
     skills: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS', 'JavaScript'],
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop',
-    github: '#',
+    image: 'showcase project/karirub.jpeg',
+    github: 'https://github.com/rahmaliyyah/Karir-UB/',
     live: '#',
   },
   {
@@ -19,9 +19,9 @@ const projects = [
     description: 'A blockchain-based digital arisan platform ensuring transparent and trustless transactions with smart contract integration.',
     role: 'Front-End Programmer',
     skills: ['React.js', 'Next.js', 'Blockchain', 'Smart Contracts'],
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop',
-    github: '#',
-    live: '#',
+    image: 'showcase project/trustarisan.png',
+    github: 'https://github.com/TrustArisan/',
+    live: 'https://trustarisan.vercel.app/',
   },
   {
     id: 3,
