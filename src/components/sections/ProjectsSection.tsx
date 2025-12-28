@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const projects = [
   {
@@ -13,7 +13,6 @@ const projects = [
     github: 'https://github.com/rahmaliyyah/Karir-UB/',
     live: 'https://karirub.free.nf/public/index.php',
   },
-  
   {
     id: 2,
     title: 'TrustArisan',
@@ -34,7 +33,7 @@ const projects = [
     github: 'https://github.com/rahmaliyyah/Langit-Nusantara',
     live: '#',
   },
-   {
+  {
     id: 4,
     title: 'TukarBaju',
     description: 'A landing web for TukarBaju campaign to overcome textile waste which focuses on promoting recycling and educating the public regarding the importance of responsible consumption and sustainable textile waste management.',
@@ -104,7 +103,6 @@ const projects = [
     github: '#',
     live: '#',
   },
- 
 ];
 
 interface ProjectsSectionProps {
@@ -114,6 +112,7 @@ interface ProjectsSectionProps {
 export const ProjectsSection = ({ visible }: ProjectsSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (visible) {
@@ -132,10 +131,20 @@ export const ProjectsSection = ({ visible }: ProjectsSectionProps) => {
     }
   }, [visible]);
 
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const currentProject = projects[currentIndex];
+
   return (
     <section 
       ref={sectionRef}
-      className="min-h-screen flex flex-col items-center justify-center px-8 py-20 relative z-10"
+      className="min-h-screen flex flex-col items-center justify-center px-4 md:px-8 py-20 relative z-10"
     >
       <div className="text-center mb-16">
         <h2 className="font-display text-4xl md:text-6xl font-bold mb-4">
@@ -146,7 +155,114 @@ export const ProjectsSection = ({ visible }: ProjectsSectionProps) => {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl w-full">
+      {/* Mobile Carousel */}
+      <div className="md:hidden w-full max-w-md">
+        <div className="relative">
+          {/* Project Card */}
+          <div className="group relative glass rounded-2xl overflow-hidden hover:glow-box transition-all duration-500">
+            {/* Project Image */}
+            <div className="relative h-56 overflow-hidden">
+              <img 
+                src={currentProject.image} 
+                alt={currentProject.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+              
+              {/* Floating links */}
+              <div className="absolute top-4 right-4 flex gap-2">
+                <a 
+                  href={currentProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 glass rounded-full hover:bg-neon-purple/20 transition-colors"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
+                <a 
+                  href={currentProject.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 glass rounded-full hover:bg-neon-purple/20 transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+            
+            {/* Content */}
+            <div className="p-6">
+              <h3 className="font-display text-xl font-bold mb-2 text-foreground">
+                {currentProject.title}
+              </h3>
+              <p className="text-muted-foreground text-sm mb-4">
+                {currentProject.description}
+              </p>
+              
+              {/* Skills */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {currentProject.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2 py-1 text-xs bg-neon-purple/10 text-neon-purple rounded-full"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+              
+              {/* Role */}
+              <div className="pt-4 border-t border-border/50">
+                <p className="text-xs text-muted-foreground">
+                  <span className="text-neon-cyan">Role:</span> {currentProject.role}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex items-center justify-between mt-6">
+            <button
+              onClick={handlePrev}
+              className="p-3 glass rounded-full hover:bg-neon-purple/20 transition-all duration-300 hover:scale-110"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Page indicator */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">
+                {currentIndex + 1} / {projects.length}
+              </span>
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="p-3 glass rounded-full hover:bg-neon-purple/20 transition-all duration-300 hover:scale-110"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Dots indicator */}
+          <div className="flex justify-center gap-2 mt-4">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentIndex
+                    ? 'w-8 h-2 bg-neon-purple'
+                    : 'w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/60'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Grid */}
+      <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl w-full">
         {projects.map((project, index) => (
           <div
             key={project.id}
@@ -166,12 +282,16 @@ export const ProjectsSection = ({ visible }: ProjectsSectionProps) => {
               <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <a 
                   href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-2 glass rounded-full hover:bg-neon-purple/20 transition-colors"
                 >
                   <Github className="w-4 h-4" />
                 </a>
                 <a 
                   href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-2 glass rounded-full hover:bg-neon-purple/20 transition-colors"
                 >
                   <ExternalLink className="w-4 h-4" />

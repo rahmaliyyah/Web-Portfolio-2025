@@ -117,7 +117,7 @@ export const ContactSection = ({ visible }: ContactSectionProps) => {
   return (
     <section 
       ref={sectionRef}
-      className="min-h-screen flex flex-col items-center justify-center px-8 py-20 relative z-10"
+      className="min-h-screen flex flex-col items-center justify-center px-4 md:px-8 py-20 relative z-10"
     >
       <div className="text-center mb-16">
         <h2 className="font-display text-4xl md:text-7xl font-bold mb-6">
@@ -132,20 +132,20 @@ export const ContactSection = ({ visible }: ContactSectionProps) => {
         {/* Main Email Card */}
         <div 
           ref={emailRef}
-          className="glass rounded-3xl p-8 md:p-12 relative overflow-hidden group opacity-0"
+          className="glass rounded-3xl p-6 md:p-12 relative overflow-hidden group opacity-0"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-neon-purple/10 via-neon-pink/10 to-neon-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-6">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-neon flex items-center justify-center glow-box">
-                <Mail className="w-8 h-8 text-foreground" />
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-center md:text-left">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-neon flex items-center justify-center glow-box shrink-0">
+                <Mail className="w-6 h-6 md:w-8 md:h-8 text-foreground" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Email me directly</p>
+                <p className="text-xs md:text-sm text-muted-foreground mb-1">Email me directly</p>
                 <a 
-                  href="mailto:rahma@example.com" 
-                  className="text-2xl md:text-3xl font-display font-bold text-gradient hover:underline"
+                  href="mailto:rahmaaliyyah29@gmail.com" 
+                  className="text-sm md:text-2xl lg:text-3xl font-display font-bold text-gradient hover:underline break-all"
                 >
                   rahmaaliyyah29@gmail.com
                 </a>
@@ -154,7 +154,7 @@ export const ContactSection = ({ visible }: ContactSectionProps) => {
             
             <button
               onClick={copyEmail}
-              className={`group/btn relative px-8 py-4 font-display text-sm tracking-wider uppercase overflow-hidden rounded-xl transition-all duration-300 ${
+              className={`group/btn relative px-6 py-3 md:px-8 md:py-4 font-display text-xs md:text-sm tracking-wider uppercase overflow-hidden rounded-xl transition-all duration-300 w-full md:w-auto shrink-0 ${
                 copiedEmail ? 'scale-95' : 'hover:scale-105'
               }`}
             >
@@ -164,15 +164,15 @@ export const ContactSection = ({ visible }: ContactSectionProps) => {
                   : 'bg-gradient-neon opacity-80 group-hover/btn:opacity-100'
               }`} />
               <span className="absolute inset-0 bg-gradient-neon opacity-0 group-hover/btn:opacity-50 blur-xl transition-opacity duration-300" />
-              <span className="relative z-10 text-foreground flex items-center gap-2 font-bold">
+              <span className="relative z-10 text-foreground flex items-center justify-center gap-2 font-bold whitespace-nowrap">
                 {copiedEmail ? (
                   <>
-                    <Check className="w-5 h-5 animate-bounce" />
+                    <Check className="w-4 h-4 md:w-5 md:h-5 animate-bounce" />
                     Copied to Clipboard!
                   </>
                 ) : (
                   <>
-                    <Copy className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
+                    <Copy className="w-3 h-3 md:w-4 md:h-4 group-hover/btn:rotate-12 transition-transform" />
                     Copy Email
                   </>
                 )}
@@ -189,7 +189,7 @@ export const ContactSection = ({ visible }: ContactSectionProps) => {
               href={method.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group relative glass rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] ${method.hoverColor} cursor-pointer`}
+              className={`group relative glass rounded-2xl p-6 md:p-8 transition-all duration-500 hover:scale-[1.02] ${method.hoverColor} cursor-pointer`}
               style={{ opacity: 0 }}
             >
               {/* Animated background gradient */}
@@ -200,19 +200,19 @@ export const ContactSection = ({ visible }: ContactSectionProps) => {
               
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-4 rounded-xl bg-gradient-to-br ${method.color} transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                    <method.icon className="w-6 h-6 text-white" />
+                  <div className={`p-3 md:p-4 rounded-xl bg-gradient-to-br ${method.color} transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                    <method.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  <ExternalLink className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                 </div>
                 
-                <h3 className="font-display text-xl font-bold mb-1 text-foreground">
+                <h3 className="font-display text-lg md:text-xl font-bold mb-1 text-foreground">
                   {method.label}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-3">
+                <p className="text-xs md:text-sm text-muted-foreground mb-3">
                   {method.description}
                 </p>
-                <p className={`font-medium bg-gradient-to-r ${method.color} bg-clip-text text-transparent`}>
+                <p className={`text-sm md:text-base font-medium bg-gradient-to-r ${method.color} bg-clip-text text-transparent break-all`}>
                   {method.username}
                 </p>
               </div>
@@ -224,8 +224,6 @@ export const ContactSection = ({ visible }: ContactSectionProps) => {
             </a>
           ))}
         </div>
-        
-      
       </div>
     </section>
   );

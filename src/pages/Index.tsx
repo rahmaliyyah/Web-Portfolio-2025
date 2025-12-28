@@ -20,22 +20,36 @@ const Index = () => {
   const sectionsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    // Initialize Lenis for smooth scrolling
-    lenisRef.current = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2, // Added for better mobile experience
-    });
+    // TEMPORARY: Disable Lenis completely for testing
+    // Force enable scroll on mobile
+    document.body.style.overflow = 'auto';
+    document.body.style.overflowX = 'hidden';
+    document.documentElement.style.overflow = 'auto';
+    document.documentElement.style.overflowX = 'hidden';
+    document.body.style.touchAction = 'auto';
+    document.body.style.position = 'relative';
+    
+    // Comment out Lenis for now
+    /*
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (!isMobile) {
+      lenisRef.current = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+      });
 
-    function raf(time: number) {
-      lenisRef.current?.raf(time);
+      function raf(time: number) {
+        lenisRef.current?.raf(time);
+        requestAnimationFrame(raf);
+      }
+
       requestAnimationFrame(raf);
     }
-
-    requestAnimationFrame(raf);
+    */
 
     return () => {
       lenisRef.current?.destroy();
