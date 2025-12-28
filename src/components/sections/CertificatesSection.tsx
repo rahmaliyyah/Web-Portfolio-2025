@@ -8,7 +8,7 @@ const certificates = [
     title: 'Software Engineer Fundamentals',
     issuer: 'Revou Academy',
     date: 'Jan 2025',
-    badge: '🎓',
+    badge: '💻',
     link: 'https://drive.google.com/file/d/1wVspSL92Gxi-ymLdQXM8YGhuLvbeJ8D6/view?usp=sharing', 
   },
   {
@@ -16,7 +16,7 @@ const certificates = [
     title: 'Software Engineer Internship',
     issuer: 'Hackerrank',
     date: 'Dec 2025',
-    badge: '🏆',
+    badge: '🎯',
     link: 'https://drive.google.com/file/d/1Jz6jTIXj_lp313-8DTmLh-eWZe4wF8V0/view?usp=sharing',
   },
   {
@@ -24,7 +24,7 @@ const certificates = [
     title: 'Master AI for Web App Development',
     issuer: 'Skill Up Academy',
     date: 'Dec 2025',
-    badge: '🏆',
+    badge: '🤖',
     link: 'https://drive.google.com/file/d/1RHqXxKD5xxENp-gJxrccG5md8eUFeBs5/view?usp=sharing',
   },
   {
@@ -40,7 +40,7 @@ const certificates = [
     title: 'SQL Intermediate',
     issuer: 'HackerRank',
     date: 'Dec 2025',
-    badge: '💻',
+    badge: '🗄️',
     link: 'https://drive.google.com/file/d/10ZPuMlgVnGl2wlQ2Mgtd98on4Adqn2Z8/view?usp=sharing',
   },
   {
@@ -48,7 +48,7 @@ const certificates = [
     title: 'JavaScript Intermediate',
     issuer: 'Hackerrank',
     date: 'Dec 2025',
-    badge: '🐍',
+    badge: '⚡',
     link: 'https://drive.google.com/file/d/1_qW_-kLg3EgXUhpMsnptrfTk3t5q4SKX/view?usp=sharing',
   },
   {
@@ -64,7 +64,7 @@ const certificates = [
     title: 'Redis Fundamentals',
     issuer: 'Redis University',
     date: 'Oct 2025',
-    badge: '🎨',
+    badge: '🔴',
     link: 'https://drive.google.com/file/d/1z8tnwVXzeHRuwxYLAwCZ9uTs5hR1r8xP/view?usp=sharing',
   },
   {
@@ -72,7 +72,7 @@ const certificates = [
     title: 'MongoDB Essentials',
     issuer: 'MongoDB University',
     date: 'Oct 2025',
-    badge: '🎨',
+    badge: '🍃',
     link: 'https://www.credly.com/users/rahma-aliyyah/badges',
   },
 ];
@@ -115,7 +115,7 @@ export const CertificatesSection = ({ visible }: CertificatesSectionProps) => {
     >
       <div className="text-center mb-16">
         <h2 className="font-display text-4xl md:text-6xl font-bold mb-4">
-          <span className="text-gradient">Courses & Certificates</span>
+          <span className="text-gradient">Courses & Certifications</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
           Continuous learning is my superpower
