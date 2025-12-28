@@ -5,17 +5,19 @@ import { Award, ExternalLink } from 'lucide-react';
 const certificates = [
   {
     id: 1,
-    title: 'AWS Cloud Practitioner',
-    issuer: 'Amazon Web Services',
-    date: '2024',
-    badge: '☁️',
+    title: 'Software Engineer Fundamentals (HTML, CSS & JS)',
+    issuer: 'Revou Academy',
+    date: 'Jan 2025',
+    badge: '🎓',
+    link: 'https://drive.google.com/file/d/1wVspSL92Gxi-ymLdQXM8YGhuLvbeJ8D6/view?usp=sharing', 
   },
   {
     id: 2,
-    title: 'React Developer Certificate',
-    issuer: 'Meta',
-    date: '2023',
+    title: 'ReactJS Beginner',
+    issuer: 'Skill Up Academy',
+    date: 'Dec 2025',
     badge: '⚛️',
+    link: 'https://drive.google.com/file/d/1EN9wynu7zqc9eW9TET4TZqHKChh8eOIv/view?usp=sharing',
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ const certificates = [
     issuer: 'freeCodeCamp',
     date: '2023',
     badge: '🏆',
+    link: '#',
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ const certificates = [
     issuer: 'HackerRank',
     date: '2022',
     badge: '💻',
+    link: '#',
   },
   {
     id: 5,
@@ -37,13 +41,31 @@ const certificates = [
     issuer: 'IBM',
     date: '2023',
     badge: '🐍',
+    link: '#',
   },
   {
     id: 6,
-    title: 'UI/UX Design Fundamentals',
-    issuer: 'Google',
-    date: '2023',
+    title: 'CSS Essentials',
+    issuer: 'Cisco Networking Academy',
+    date: 'Dec 2025',
     badge: '🎨',
+    link: 'https://drive.google.com/file/d/1bsdMjOJFGkT2YaTkt9O_W4P4-pybVXu3/view?usp=sharing',
+  },
+  {
+    id: 7,
+    title: 'Redis Fundamentals',
+    issuer: 'Redis University',
+    date: 'Oct 2025',
+    badge: '🎨',
+    link: 'https://drive.google.com/file/d/1z8tnwVXzeHRuwxYLAwCZ9uTs5hR1r8xP/view?usp=sharing',
+  },
+  {
+    id: 8,
+    title: 'MongoDB Essentials',
+    issuer: 'MongoDB University',
+    date: 'Oct 2025',
+    badge: '🎨',
+    link: 'https://www.credly.com/users/rahma-aliyyah/badges',
   },
 ];
 
@@ -72,6 +94,12 @@ export const CertificatesSection = ({ visible }: CertificatesSectionProps) => {
     }
   }, [visible]);
 
+  const handleCardClick = (link: string) => {
+    if (link && link !== '#') {
+      window.open(link, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -79,7 +107,7 @@ export const CertificatesSection = ({ visible }: CertificatesSectionProps) => {
     >
       <div className="text-center mb-16">
         <h2 className="font-display text-4xl md:text-6xl font-bold mb-4">
-          <span className="text-gradient">Certifications</span>
+          <span className="text-gradient">Courses & Certificates</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
           Continuous learning is my superpower
@@ -91,7 +119,8 @@ export const CertificatesSection = ({ visible }: CertificatesSectionProps) => {
           <div
             key={cert.id}
             ref={el => { if (el) cardsRef.current[index] = el; }}
-            className="glass rounded-2xl p-6 hover:glow-box transition-all duration-500 group cursor-pointer opacity-0 hover:scale-105"
+            onClick={() => handleCardClick(cert.link)}
+            className="glass rounded-2xl p-6 hover:glow-box transition-all duration-500 group cursor-pointer opacity-0 hover:scale-105 relative"
           >
             {/* Badge */}
             <div className="text-4xl mb-4 animate-float" style={{ animationDelay: `${index * 0.2}s` }}>
@@ -107,9 +136,14 @@ export const CertificatesSection = ({ visible }: CertificatesSectionProps) => {
               {cert.issuer}
             </div>
             
-            <p className="text-xs text-muted-foreground/60">
+            <p className="text-xs text-muted-foreground/60 mb-3">
               {cert.date}
             </p>
+
+            {/* External Link Icon */}
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <ExternalLink className="w-5 h-5 text-neon-purple" />
+            </div>
             
             {/* Hover effect */}
             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none overflow-hidden">
