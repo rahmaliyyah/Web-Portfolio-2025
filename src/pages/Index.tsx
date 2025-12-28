@@ -27,6 +27,7 @@ const Index = () => {
       orientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
+      touchMultiplier: 2, // Added for better mobile experience
     });
 
     function raf(time: number) {
@@ -56,7 +57,7 @@ const Index = () => {
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Check initial position
     
     return () => window.removeEventListener('scroll', handleScroll);
@@ -75,7 +76,7 @@ const Index = () => {
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
@@ -103,56 +104,56 @@ const Index = () => {
         className="relative min-h-screen bg-background transition-opacity duration-1000 ease-in-out"
         style={{ opacity: showIntro ? 0 : 1 }}
       >
-      {/* Cursor glow effect */}
-      <div 
-        className="cursor-glow hidden md:block"
-        style={{ 
-          left: cursorPosition.x,
-          top: cursorPosition.y,
-        }}
-      />
+        {/* Cursor glow effect */}
+        <div 
+          className="cursor-glow hidden md:block"
+          style={{ 
+            left: cursorPosition.x,
+            top: cursorPosition.y,
+          }}
+        />
 
-      {/* 3D Background Scene - TETAP ADA (laptop & stars) */}
-      <Scene3D 
-        currentSection={currentSection} 
-        mousePosition={mousePosition}
-      />
+        {/* 3D Background Scene - TETAP ADA (laptop & stars) */}
+        <Scene3D 
+          currentSection={currentSection} 
+          mousePosition={mousePosition}
+        />
 
-      {/* Navigation */}
-      <Navigation 
-        currentSection={currentSection} 
-        onNavigate={handleNavigate}
-      />
+        {/* Navigation */}
+        <Navigation 
+          currentSection={currentSection} 
+          onNavigate={handleNavigate}
+        />
 
-      {/* Main Content - Normal scroll flow */}
-      <main className="relative z-10">
-        <div ref={(el) => el && (sectionsRef.current[0] = el)}>
-          <HeroSection onEnter={handleEnter} />
-        </div>
-        <div ref={(el) => el && (sectionsRef.current[1] = el)}>
-          <SkillsSection visible={currentSection === 1} />
-        </div>
-        <div ref={(el) => el && (sectionsRef.current[2] = el)}>
-          <ProjectsSection visible={currentSection === 2} />
-        </div>
-        <div ref={(el) => el && (sectionsRef.current[3] = el)}>
-          <ExperienceSection visible={currentSection === 3} />
-        </div>
-        <div ref={(el) => el && (sectionsRef.current[4] = el)}>
-          <CertificatesSection visible={currentSection === 4} />
-        </div>
-        <div ref={(el) => el && (sectionsRef.current[5] = el)}>
-          <ContactSection visible={currentSection === 5} />
-        </div>
-      </main>
+        {/* Main Content - Normal scroll flow */}
+        <main className="relative z-10">
+          <div ref={(el) => el && (sectionsRef.current[0] = el)}>
+            <HeroSection onEnter={handleEnter} />
+          </div>
+          <div ref={(el) => el && (sectionsRef.current[1] = el)}>
+            <SkillsSection visible={currentSection === 1} />
+          </div>
+          <div ref={(el) => el && (sectionsRef.current[2] = el)}>
+            <ProjectsSection visible={currentSection === 2} />
+          </div>
+          <div ref={(el) => el && (sectionsRef.current[3] = el)}>
+            <ExperienceSection visible={currentSection === 3} />
+          </div>
+          <div ref={(el) => el && (sectionsRef.current[4] = el)}>
+            <CertificatesSection visible={currentSection === 4} />
+          </div>
+          <div ref={(el) => el && (sectionsRef.current[5] = el)}>
+            <ContactSection visible={currentSection === 5} />
+          </div>
+        </main>
 
-      {/* Background gradient overlays */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-purple/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-blue/10 rounded-full blur-[150px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-pink/5 rounded-full blur-[200px]" />
+        {/* Background gradient overlays */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-purple/10 rounded-full blur-[150px]" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-blue/10 rounded-full blur-[150px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-pink/5 rounded-full blur-[200px]" />
+        </div>
       </div>
-    </div>
     </>
   );
 };
