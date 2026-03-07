@@ -47,7 +47,7 @@ export const HeroSection = ({ onEnter }: HeroSectionProps) => {
         
         <h1 
           ref={titleRef}
-          className="font-display text-5xl md:text-7xl lg:text-5xl font-bold mb-6 leading-tight opacity-0"
+          className="font-display text-5xl md:text-7xl lg:text-5xl font-bold mb-4 leading-tight opacity-0"
         >
           <span className="text-foreground">I'm </span>
           <span className="text-gradient">Rahma Aliyyah</span>
@@ -57,11 +57,11 @@ export const HeroSection = ({ onEnter }: HeroSectionProps) => {
           ref={subtitleRef}
           className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed opacity-0"
         >
-          <span className="text-foreground font-medium">Aspiring Full-Stack Developer | Web & Mobile Dev Enthusiast</span>
+          <span className="text-foreground font-large">Web and Mobile Developer</span>
           <br />
-          An Information Technology Student who passionate about creating 
-          <span className="text-neon-purple"> impactful web experiences</span> and 
-          <span className="text-neon-pink"> innovative solutions</span>.
+          An Information Technology Student who enjoys creating 
+          <span className="text-neon-purple"> impactful websites</span> and 
+          <span className="text-neon-pink"> engaging mobile applications</span>.
         </p>
         
         <button
