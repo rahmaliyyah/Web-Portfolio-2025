@@ -12,10 +12,10 @@ const experiences = [
     skills: ['Laravel', 'HTML', 'CSS', 'JavaScript', 'MySQL', 'AJAX'],
   },
   {
-    id: 1,
-    title: 'Laboratory Assistant of Web Application Development Lab',
+    id: 2,
+    title: 'Laboratory Assistant of Mobile Application Development Lab',
     company: 'Brawijaya University',
-    period: 'Aug 2025 - Dec 2025',
+    period: 'Feb 2026 - Present',
     description: 'Assisted in delivering mobile application development practicum sessions for 34 students, guiding them in building mobile applications using Android Studio,Kotlin, Jetpack Compose and Supabase with best practice)',
     skills: ['Kotlin', 'Supabase', 'Jetpack Compose'],
   },
