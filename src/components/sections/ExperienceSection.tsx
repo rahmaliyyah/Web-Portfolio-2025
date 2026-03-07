@@ -11,6 +11,14 @@ const experiences = [
     description: 'Assisted in delivering web application development practicum sessions for 34 students, guiding them in building dynamic web applications using Laravel, MySQL, AJAX, and core web technologies (HTML, CSS, JavaScript)',
     skills: ['Laravel', 'HTML', 'CSS', 'JavaScript', 'MySQL', 'AJAX'],
   },
+  {
+    id: 1,
+    title: 'Laboratory Assistant of Web Application Development Lab',
+    company: 'Brawijaya University',
+    period: 'Aug 2025 - Dec 2025',
+    description: 'Assisted in delivering mobile application development practicum sessions for 34 students, guiding them in building mobile applications using Android Studio,Kotlin, Jetpack Compose and Supabase with best practice)',
+    skills: ['Kotlin', 'Supabase', 'Jetpack Compose'],
+  },
 ];
 
 interface ExperienceSectionProps {
