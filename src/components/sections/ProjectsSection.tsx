@@ -31,7 +31,7 @@ const projects = [
     skills: ['HTML', 'Tailwind CSS', 'REST API','Laravel','JavaScript', 'PHP', 'MySQL'],
     image: 'showcase project/langitnusantara.png',
     github: 'https://github.com/rahmaliyyah/Langit-Nusantara',
-    live: 'https://github.com/rahmaliyyah/Langit-Nusantara',
+    live: 'https://langit-nusantara-production.up.railway.app/dashboard',
   },
   {
     id: 4,
