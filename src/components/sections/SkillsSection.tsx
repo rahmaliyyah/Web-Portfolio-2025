@@ -6,7 +6,7 @@ const skillCategories = [
   {
     title: 'Languages',
     icon: Code2,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-blue-500 to-cyan-100',
     skills: [
       { name: 'JavaScript', logo: 'https://cdn.simpleicons.org/javascript/F7DF1E', color: '#F7DF1E' },
       { name: 'TypeScript', logo: 'logos/typescript.png', color: '#F7DF1E' },
@@ -26,6 +26,7 @@ const skillCategories = [
       { name: 'React', logo: 'https://cdn.simpleicons.org/react/61DAFB', color: '#61DAFB' },
       { name: 'Next.js', logo: 'logos/nextjs.png', color: '#000000' },
       { name: 'Tailwind', logo: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', color: '#06B6D4' },
+      { name: 'Vue.js', logo: 'logos/vue.png', color: '#42B883' },
     ],
   },
   {
