@@ -19,6 +19,14 @@ const experiences = [
     description: 'Assisted in delivering mobile application development practicum sessions for 34 students, guiding them in building mobile applications using Android Studio,Kotlin, Jetpack Compose and Supabase with best practice)',
     skills: ['Kotlin', 'Supabase', 'Jetpack Compose'],
   },
+    {
+    id: 3,
+    title: 'Curriculum Developer of Media, Game and Mobile (MGM) Laboratory',
+    company: 'Faculty of Computer Science, Brawijaya University',
+    period: 'Mar 2026 - Present',
+    description: 'Developing the laboratory’s internal learning system includes revising practicum modules, creating new modules, and supporting learning materials for 4 even-semester courses and 3 odd-semester of web course, UI/UX course, and mobile-related subject course',
+    skills: ['Mobile Development', 'Web Development', 'UI/UX Design'],
+  },
 ];
 
 interface ExperienceSectionProps {
